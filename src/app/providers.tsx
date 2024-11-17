@@ -8,6 +8,8 @@ import {
 import { Toaster } from "react-hot-toast";
 
 import api from "@/lib/api";
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 
 const defaultQueryFn = async ({ queryKey }: QueryOptions) => {
   const { data } = await api.get(`${queryKey?.[0]}`);
@@ -21,11 +23,17 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+  children,
+  session,
+}: {
+  children: React.ReactNode;
+  session: Session | null;
+}) {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster position="top-center" />
-      {children}
+      <SessionProvider session={session}>{children}</SessionProvider>
     </QueryClientProvider>
   );
 }
