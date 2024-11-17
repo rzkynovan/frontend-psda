@@ -35,7 +35,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           : {
               username: formData.username,
               password: formData.password,
-            }
+            },
       ),
     };
 
@@ -50,7 +50,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
       if (!res.ok) {
         const data = await res.json();
         throw new Error(
-          data.detail || `${mode === "login" ? "Login" : "Registration"} failed`
+          data.detail ||
+            `${mode === "login" ? "Login" : "Registration"} failed`,
         );
       }
 

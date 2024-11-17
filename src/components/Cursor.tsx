@@ -19,7 +19,7 @@ function FlareCursor() {
 
     // Check if the cursor is over a clickable element by inspecting the cursor style.
     setIsPointer(
-      window.getComputedStyle(target).getPropertyValue("cursor") === "pointer"
+      window.getComputedStyle(target).getPropertyValue("cursor") === "pointer",
     );
   };
 
